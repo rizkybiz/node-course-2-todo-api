@@ -125,11 +125,19 @@ describe('DELETE /todos/:id', () => {
         });
     });
 
-    // it('Should return 404 if todo not found', (done) => {
+    it('Should return 404 if todo not found', (done) => {
+        
+        request(app)
+        .delete(`/todo/${new ObjectID()}`)
+        .expect(404)
+        .end(done);
+    });
 
-    // });
-
-    // it('Should return 404 if objectID is invalid', (done) => {
-
-    // });
+    it('Should return 404 if objectID is invalid', (done) => {
+        
+        request(app)
+        .delete('/todos/123')
+        .expect(404)
+        .end(done);
+    });
 });
